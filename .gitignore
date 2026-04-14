@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.idea/
+*.iml
+target/
+*.class
+*.jar
+*.war
+*.ear
+uploads/
+application-local.yml
+*.local
