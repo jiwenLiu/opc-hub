@@ -9,5 +9,5 @@ export function register(data) {
 }
 
 export function logout() {
-  return request.post('/auth/logout')
+  return request.post('/api/auth/logout')
 }
