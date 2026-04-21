@@ -24,7 +24,7 @@ request.interceptors.response.use(
   (response) => {
     console.log('响应数据:', response.data)
     const res = response.data
-    if (res.code !== 200 && res.code !== undefined) {
+    if (res.code !== 200) {
       console.error('请求失败:', res)
       ElMessage.error(res.message || '请求失败')
       if (res.code === 401) {
