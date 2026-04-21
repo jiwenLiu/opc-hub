@@ -68,7 +68,17 @@ async function handleLogin() {
     const res = await userStore.login(form)
     ElMessage.success('登录成功')
     const role = res.data.role || 'employer'
-    const redirect = route.query.redirect || (role === 'opc' ? '/opc/dashboard' : '/enterprise/dashboard')
+    console.log('角色:', role)
+    let redirect = route.query.redirect
+    if (!redirect) {
+      if (role === 'opc') {
+        redirect = '/opc/dashboard'
+      } else if (role === 'enterprise') {
+        redirect = '/enterprise/dashboard'
+      } else {
+        redirect = '/'
+      }
+    }
     router.replace(redirect)
   } catch (e) {
     console.error('登录失败:', e)
