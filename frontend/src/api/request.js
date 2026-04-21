@@ -22,8 +22,10 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   (response) => {
+    console.log('响应数据:', response.data)
     const res = response.data
     if (res.code !== 200 && res.code !== undefined) {
+      console.error('请求失败:', res)
       ElMessage.error(res.message || '请求失败')
       if (res.code === 401) {
         localStorage.removeItem('token')
@@ -34,7 +36,10 @@ request.interceptors.response.use(
     return res
   },
   (error) => {
+    console.error('请求错误:', error)
     if (error.response) {
+      console.error('响应状态:', error.response.status)
+      console.error('响应数据:', error.response.data)
       if (error.response.status === 401) {
         localStorage.removeItem('token')
         ElMessage.error('登录已过期，请重新登录')
